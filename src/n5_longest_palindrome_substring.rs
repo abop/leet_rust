@@ -1,5 +1,4 @@
-mod n5_longest_palindrome_substring;
-fn main() {
+pub fn main() {
     println!("{}", longest_palindrome(String::from("eeee")));
 }
 

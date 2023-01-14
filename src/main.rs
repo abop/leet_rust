@@ -1,5 +1,4 @@
 use std::env;
-use textplots::{Chart, Plot, Shape};
 
 pub mod lifetime;
 pub mod r#move;
@@ -12,16 +11,16 @@ fn main() {
     // n6_zigzag_conversion::main();
     // r#move::main();
     // lifetime::main();
-    // let salary = Some(&args[1])
-    //     .map(|x| x.parse::<i32>().unwrap())
-    //     .unwrap_or(65000);
-    // let taxable_salary = Some(&args[2])
-    //     .map(|x| x.parse::<i32>().unwrap())
-    //     .unwrap_or(36675);
-    // calculat(salary, taxable_salary, Some(1000));
-    for i in (3000..65000).step_by(1000) {
-        println!("{:5} {:5}", i, taxed_income(i, Some(1000)) + (65000 - i) * 99 / 100);
-    }
+    let salary = Some(&args[1])
+        .map(|x| x.parse::<i32>().unwrap())
+        .unwrap_or(65000);
+    let taxable_salary = Some(&args[2])
+        .map(|x| x.parse::<i32>().unwrap())
+        .unwrap_or(36675);
+    calculat(salary, taxable_salary, Some(1000));
+    // for i in (3000..65000).step_by(1000) {
+    //     println!("{:5} {:5}", i, taxed_income(i, Some(1000)) + (65000 - i) * 99 / 100);
+    // }
     // let points: Vec<(f32,f32)> = (3000..65000).step_by(1000).map(|i| 
     //     (i as f32, (taxed_income(i, Some(1000)) + (65000 - i) * 99 / 100)  as f32))
     //     .collect();
@@ -29,6 +28,7 @@ fn main() {
     // Chart::new(80, 80, 3000.0, 65000.0).lineplot(&Shape::Lines(&points[..])).display();
 }
 
+#[allow(unused_variables)]
 fn calculat(monthly_salary: i32, taxable_salary: i32, deduction: Option<i32>) {
     let tax_free_salary = monthly_salary - taxable_salary;
     println!(
@@ -50,9 +50,10 @@ fn calculat(monthly_salary: i32, taxable_salary: i32, deduction: Option<i32>) {
 
 /// 计算税后收益
 /// 社保属于长期收益，按100%税计算
+#[allow(unused_variables)]
 fn taxed_income(monthly_salary: i32, deduction: Option<i32>) -> i32 {
-    // monthly_salary - tax(monthly_salary * 12, deduction) + gjj(monthly_salary) - sb(monthly_salary)
-    monthly_salary - tax(monthly_salary * 5+55000*7, deduction) + gjj(monthly_salary) - sb(monthly_salary)
+    monthly_salary - tax(monthly_salary * 12, deduction) + gjj(monthly_salary) - sb(monthly_salary)
+    // monthly_salary - tax(monthly_salary * 5+55000*7, deduction) + gjj(monthly_salary) - sb(monthly_salary)
 }
 
 /// 计算公积金
